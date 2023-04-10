@@ -24,12 +24,19 @@ Print(num);
 //которая найдёт сумму натуральных элементов в промежутке от M до N.
 //M = 1; N = 15 -> 120
 
+/*
+
 int PLusNums(int numM, int numN)
 {
-    if (numM != numN) return PLusNums(numM + 1, numN) + numM;
+    if (numM != numN)
+    {
+        if(numM > numN) return PLusNums(numM - 1, numN) + numM;
+        else return PLusNums(numM + 1, numN) + numM;
+    } 
     return numN;
 }
-System.Console.WriteLine("Найдём сумму цифр в промежутке от M до N!");
+
+Console.WriteLine("Найдём сумму цифр в промежутке от M до N!");
 Console.Write("Введите число M: ");
 int numM = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите число N: ");
@@ -37,8 +44,23 @@ int numN = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine($"Искомое число = {PLusNums(numM, numN)}");
 
+*/
+
 //Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии.
 //Даны два неотрицательных числа m и n.
 //m = 2, n = 3 -> A(m,n) = 9
 //m = 3, n = 2 -> A(m,n) = 29
 
+int FindAkkerman(int num1, int num2)
+{
+    if (num1 == 0) return num2 + 1;
+    if (num1 > 0 && num2 == 0) return FindAkkerman(num1 - 1, 1);
+    if (num1 > 0 && num2 > 0) return FindAkkerman(num1 - 1, FindAkkerman(num1, num2 - 1));
+    return FindAkkerman(num1, num2);
+}
+
+Console.Write("Введите первое число: ");
+int num1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите второе число: ");
+int num2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($" Функция Аккермана равна: {FindAkkerman(num1, num2)}");
